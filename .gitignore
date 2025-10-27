@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.cache
+
+# Model checkpoints and large files
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# Hugging Face cache
+.cache/huggingface/
+.cache/modelscope/
+
+# Local data (optional - uncomment if you want to exclude)
+# data/output/
+# data/input/prompts/*.wav
+
+# Test results (optional - uncomment if you want to exclude)
+# results/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Logs
+*.log
+logs/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Environment variables
+.env
+.env.local

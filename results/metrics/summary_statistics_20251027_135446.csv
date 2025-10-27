@@ -1,0 +1,2 @@
+﻿model,test_count,inference_time_mean,inference_time_std,inference_time_min,inference_time_max,rtf_mean,rtf_std,rtf_min,rtf_max,peak_memory_mean,peak_memory_std,peak_memory_max,cpu_percent_mean,cpu_percent_std,audio_duration_mean,sample_rate,gpu_memory_mean,gpu_memory_max
+zonos,10,5.19718,8.480673379553457,1.3214,29.2197,2.10799,5.001568751557411,0.5233,16.3427,3282.4010000000003,44.496348027425654,3300.84,0.0,0.0,4.5081,44100,3611.7300000000005,3611.73

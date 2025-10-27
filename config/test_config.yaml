@@ -1,0 +1,16 @@
+# 테스트 설정
+device: "auto"
+num_iterations: 5
+output_format: "wav"
+
+# 성능 측정
+monitoring:
+  measure_cpu: true
+  measure_memory: true
+  measure_gpu: true
+
+# 출력 설정
+output:
+  save_audio: true
+  save_metrics: true
+  create_plots: true

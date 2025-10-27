@@ -1,0 +1,67 @@
+# 한국어 TTS 모델 벤치마크 설정
+# 5개의 실제 사용 가능한 오픈소스 TTS 모델
+
+gtts:  # Google Text-to-Speech
+  model_type: "api"
+  model_path: "google-tts"
+  language: "ko"
+  sample_rate: 24000
+  output_dir: "data/output/gtts"
+  github: "https://github.com/pndurette/gTTS"
+  config:
+    slow: false
+    tld: "com"
+  description: "Google TTS API, 가장 간단하고 안정적, 한국어 완벽 지원"
+
+zonos:  # Zyphra Zonos-v0.1
+  model_type: "huggingface"
+  model_path: "Zyphra/Zonos-v0.1-transformer"
+  language: "en"  # 주의: 한국어는 제한적
+  sample_rate: 44100
+  output_dir: "data/output/zonos"
+  github: "https://github.com/Zyphra/Zonos"
+  huggingface: "https://huggingface.co/Zyphra/Zonos-v0.1-transformer"
+  config:
+    cfg_scale: 2.0  # Classifier-Free Guidance scale
+    max_new_tokens: 2580  # 86 * 30 (약 30초 오디오)
+    min_p: 0.1  # minimum probability for sampling
+  description: "200k시간 학습, 고품질 TTS (한국어 제한적)"
+  warning: "한국어는 학습 데이터에 소량만 포함 - 영어 중심 모델"
+  
+cosyvoice:  # CosyVoice 2.0
+  model_type: "cosyvoice_official"
+  model_path: "iic/CosyVoice2-0.5B"  # CosyVoice 2.0 (0.5B 파라미터)
+  language: "ko"
+  sample_rate: 24000
+  output_dir: "data/output/cosyvoice"
+  github: "https://github.com/FunAudioLLM/CosyVoice"
+  config:
+    temperature: 1.0
+    speed: 1.0
+  description: "CosyVoice 2.0 - 향상된 한국어 지원, Zero-shot 복제, 0.5B 모델"
+  
+kokoro:  # Kokoro-82M
+  model_type: "pip"
+  model_path: "hexgrad/Kokoro-82M"
+  language: "en"  # 한국어는 공식 지원 안 됨
+  sample_rate: 24000  # Kokoro 고정 샘플레이트
+  output_dir: "data/output/kokoro"
+  github: "https://github.com/hexgrad/kokoro"
+  pypi: "https://pypi.org/project/kokoro/"
+  config:
+    voice: "af_bella"
+    speed: 1.0
+  description: "초경량 82M 파라미터, TTS Arena #1, Apache 라이선스"
+  warning: "한국어는 공식 지원 안 됨 (영어, 일본어, 중국어만 지원)"
+  
+melotts:  # MeloTTS-Korean
+  model_type: "pip"
+  model_path: "myshell-ai/MeloTTS-Korean"
+  language: "KR"
+  sample_rate: 44100
+  output_dir: "data/output/melotts"
+  github: "https://github.com/myshell-ai/MeloTTS"
+  config:
+    speed: 1.0
+    speaker_id: 0
+  description: "한국어 전용 TTS, MIT 라이선스"

@@ -76,8 +76,8 @@ class BenchmarkRunner:
         print("모델 초기화 시작")
         print("=" * 60)
         
-        # config에 정의된 모든 모델
-        available_models = ['gtts', 'zonos', 'cosyvoice', 'kokoro', 'melotts']
+        # config에 정의된 모든 모델 (벤치마크에 사용할 모델만)
+        available_models = ['gtts', 'melotts', 'cosyvoice', 'coqui']
         
         for model_name in available_models:
             if model_name not in self.models_config:
@@ -134,6 +134,18 @@ class BenchmarkRunner:
                     try:
                         from models.melotts import MeloTTSKorean
                         model = MeloTTSKorean(device='auto')
+                        model.load_model()
+                        self.models[model_name] = model
+                        print(f"✓ {model_name} 초기화 성공")
+                    except (NotImplementedError, ImportError) as e:
+                        print(f"⚠️  {model_name}: {str(e)[:100]}...")
+                        print(f"  → 이 모델은 건너뜁니다.")
+                        continue
+                
+                elif model_name == 'coqui':
+                    try:
+                        from models.coqui_tts import CoquiTTS
+                        model = CoquiTTS(device='auto')
                         model.load_model()
                         self.models[model_name] = model
                         print(f"✓ {model_name} 초기화 성공")

@@ -6,6 +6,7 @@ from models.zonos import ZonosTTS
 from models.cosyvoice import CosyVoiceTTS
 from models.kokoro import KokoroTTS
 from models.melotts import MeloTTSKorean
+from models.coqui_tts import CoquiTTS
 
 __all__ = [
     "BaseTTS",
@@ -13,6 +14,7 @@ __all__ = [
     "ZonosTTS",
     "CosyVoiceTTS",
     "KokoroTTS",
-    "MeloTTSKorean"
+    "MeloTTSKorean",
+    "CoquiTTS"
 ]
 

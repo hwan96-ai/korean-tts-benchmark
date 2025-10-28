@@ -65,3 +65,15 @@ melotts:  # MeloTTS-Korean
     speed: 1.0
     speaker_id: 0
   description: "한국어 전용 TTS, MIT 라이선스"
+
+coqui:  # Coqui TTS (XTTS-v2)
+  model_type: "pip"
+  model_name: "tts_models/multilingual/multi-dataset/xtts_v2"
+  language: "ko"
+  sample_rate: 24000
+  output_dir: "data/output/coqui"
+  github: "https://github.com/coqui-ai/TTS"
+  config:
+    voice_cloning: true
+  description: "Coqui TTS XTTS-v2 - 멀티링구얼 TTS, Voice Cloning 지원"
+  features: ["멀티링구얼", "Voice Cloning", "한국어 지원"]

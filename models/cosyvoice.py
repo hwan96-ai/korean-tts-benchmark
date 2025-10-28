@@ -192,13 +192,14 @@ class CosyVoiceTTS(BaseTTS):
             prompt_text = kwargs.get('prompt_text', None)
             stream = kwargs.get('stream', False)
             
-            # 한국어 + 프롬프트 파일이 있으면 자동으로 Zero-shot 모드 사용
-            if self.language == 'ko' and prompt_wav is None:
-                korean_prompt_path = Path(__file__).parent.parent / 'data/input/prompts/korean_female.wav'
-                if korean_prompt_path.exists():
-                    prompt_wav = str(korean_prompt_path)
-                    prompt_text = "안녕하세요"  # 프롬프트 텍스트
-                    print(f"  ✓ 한국어 프롬프트 음성 발견 → Zero-shot 모드 사용")
+            # Zero-shot 모드는 명시적으로 요청할 때만 사용
+            # (자동 전환 비활성화 - SFT 모드가 더 안정적)
+            # if self.language == 'ko' and prompt_wav is None:
+            #     korean_prompt_path = Path(__file__).parent.parent / 'data/input/prompts/korean_female.wav'
+            #     if korean_prompt_path.exists():
+            #         prompt_wav = str(korean_prompt_path)
+            #         prompt_text = "안녕하세요"  # 프롬프트 텍스트
+            #         print(f"  ✓ 한국어 프롬프트 음성 발견 → Zero-shot 모드 사용")
             
             # 한국어 텍스트에 언어 태그 추가 (필요시)
             if self.language == 'ko' and not text.startswith('<|'):

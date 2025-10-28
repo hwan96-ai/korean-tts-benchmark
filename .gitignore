@@ -32,6 +32,16 @@ env/
 *.swo
 *~
 
+# Cursor
+.cursorrules
+.cursor/
+.cursorignore
+
+# Cursor project planning docs (for development only)
+docs/PLAN.md
+docs/SPEC.md
+docs/TASKS.md
+
 # OS
 .DS_Store
 Thumbs.db
@@ -51,9 +61,9 @@ Thumbs.db
 .cache/huggingface/
 .cache/modelscope/
 
-# Local data (optional - uncomment if you want to exclude)
-# data/output/
-# data/input/prompts/*.wav
+# Local data (generated audio files)
+data/output/
+data/input/prompts/*.wav
 
 # Test results (optional - uncomment if you want to exclude)
 # results/
@@ -63,6 +73,9 @@ Thumbs.db
 *.temp
 temp/
 tmp/
+
+# Third-party repositories
+Zonos/
 
 # Logs
 *.log

@@ -1,0 +1,3 @@
+﻿model,test_count,inference_time_mean,inference_time_std,inference_time_min,inference_time_max,rtf_mean,rtf_std,rtf_min,rtf_max,peak_memory_mean,peak_memory_std,peak_memory_max,cpu_percent_mean,cpu_percent_std,audio_duration_mean,sample_rate,gpu_memory_mean,gpu_memory_max
+gtts,50,0.46932199999999996,0.07232736036343963,0.3507,0.6986,0.130424,0.06512880663010205,0.0641,0.343,3952.725,0.8131727983645297,3952.84,0.0,0.0,4.223999999999999,24000,4785.6,4785.6
+melotts,50,0.185728,0.4296705852779094,0.0659,3.1556,0.063336,0.2340905692161014,0.0183,1.685,4155.544999999999,8.972959662343284,4165.99,0.8,3.404678653660852,4.19512,44100,5316.9126,5329.69

@@ -28,9 +28,9 @@ zonos:  # Zyphra Zonos-v0.1
   description: "200k시간 학습, 고품질 TTS (한국어 제한적)"
   warning: "한국어는 학습 데이터에 소량만 포함 - 영어 중심 모델"
   
-cosyvoice:  # CosyVoice 2.0
+cosyvoice:  # CosyVoice-300M (SFT)
   model_type: "cosyvoice_official"
-  model_path: "iic/CosyVoice2-0.5B"  # CosyVoice 2.0 (0.5B 파라미터)
+  model_path: "iic/CosyVoice-300M-SFT"  # CosyVoice-300M SFT 모델
   language: "ko"
   sample_rate: 24000
   output_dir: "data/output/cosyvoice"
@@ -38,7 +38,7 @@ cosyvoice:  # CosyVoice 2.0
   config:
     temperature: 1.0
     speed: 1.0
-  description: "CosyVoice 2.0 - 향상된 한국어 지원, Zero-shot 복제, 0.5B 모델"
+  description: "CosyVoice-300M SFT - 멀티링구얼 TTS, 한국어 화자 지원"
   
 kokoro:  # Kokoro-82M
   model_type: "pip"

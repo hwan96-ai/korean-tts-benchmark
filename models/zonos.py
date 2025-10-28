@@ -78,8 +78,12 @@ class ZonosTTS(BaseTTS):
         self.output_dir = Path(__file__).parent.parent / output_dir_path
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
+        # 고정 화자를 위한 시드 설정
+        self.speaker_seed: int = 42  # 재현성을 위한 시드 (일관된 화자 생성)
+        
         print(f"✓ ZonosTTS 초기화 완료 (device: {self.device})")
         print(f"  ⚠️  경고: 한국어 지원이 제한적입니다 (영어 중심 모델)")
+        print(f"  ✓ 고정 화자 시드 설정 (seed={self.speaker_seed})")
     
     def load_model(self) -> None:
         """Zonos 모델을 로드합니다.
@@ -145,6 +149,7 @@ class ZonosTTS(BaseTTS):
             text: 합성할 텍스트
             **kwargs: 추가 모델 파라미터
                 - language: 언어 코드 (기본값: 'ko')
+                - speaker: 화자 embedding (기본값: self.default_speaker, 고정 화자)
                 - cfg_scale: Classifier-Free Guidance scale (기본값: self.cfg_scale)
                 - max_new_tokens: 생성할 최대 토큰 수 (기본값: self.max_new_tokens)
                 - min_p: 최소 확률 threshold (기본값: self.min_p)
@@ -185,11 +190,26 @@ class ZonosTTS(BaseTTS):
             max_new_tokens = kwargs.get('max_new_tokens', self.max_new_tokens)
             min_p = kwargs.get('min_p', self.min_p)
             
+            # speaker 설정
+            # kwargs로 전달되지 않으면 고정 시드로 일관된 랜덤 화자 생성
+            speaker = kwargs.get('speaker', None)
+            
+            # 고정 화자를 위해 매번 같은 시드 설정
+            if speaker is None:
+                torch.manual_seed(self.speaker_seed)
+                # Zonos 내부에서 랜덤 speaker를 생성할 때 이 시드를 사용
+            
             # conditioning 딕셔너리 생성
             cond_dict = make_cond_dict(
                 text=text,
-                language=language
+                language=language,
+                speaker=speaker,  # None이면 Zonos가 시드 기반 랜덤 생성
+                device=self.device
             )
+            
+            # 고정 화자를 위해 prepare_conditioning 전에도 시드 설정
+            if speaker is None:
+                torch.manual_seed(self.speaker_seed)
             
             # 모델에 conditioning 전달
             conditioning = self.model.prepare_conditioning(cond_dict)
@@ -251,6 +271,7 @@ class ZonosTTS(BaseTTS):
             "cfg_scale": self.cfg_scale,
             "max_new_tokens": self.max_new_tokens,
             "min_p": self.min_p,
+            "speaker": "fixed (seed=42)",  # 고정 화자 사용
             "warning": "한국어 지원 제한적 (영어 중심)"
         })
         return base_info
